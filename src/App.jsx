@@ -7,6 +7,9 @@ import Footer from "./Footer"
 import "./App.css"
 
 // Di lingkungan lokal Anda, Anda bisa menggunakan impor ini:
+import bg1 from "./assets/bg1.jpg"
+import bg2 from "./assets/bg2.jpg"
+import bg3 from "./assets/bg3.jpg"
 import bgWhite from "./assets/DummbyBGwhite.jpg"
 import bgBlack from "./assets/DummyBGblack.png"
 
@@ -99,6 +102,14 @@ const Modal = ({ activeModalId, onClose }) => {
                     <div className="text-gray-300">
                         {content}
                     </div>
+                    <div className="flex mb-8 justify-center">
+                        <button 
+                            onClick={onClose}
+                            className="bg-white/10 border border-white/20 text-white font-semibold px-6 py-2 rounded-full hover:bg-white/20 transition-colors duration-300"
+                        >
+                            Close
+                        </button>
+                    </div>
                 </motion.div>
             </motion.div>
         </AnimatePresence>
@@ -117,6 +128,7 @@ const GridBox = ({ children, className, onClick, onMouseEnter, onMouseLeave, ima
             className={`absolute inset-0 bg-cover bg-center transition-all duration-700 ease-in-out ${isExpanded ? 'scale-110 blur-sm' : 'scale-100 blur-0'}`}
             style={{ backgroundImage: `url(${imageUrl})` }}
         />
+        <div className="absolute inset-0 bg-black/40"></div>
         <div className="relative z-10 w-full h-full">
             {children}
         </div>
@@ -154,7 +166,7 @@ function InteractiveGridLayout({ onOpenModal }) {
     };
 
     const handleDesktopHover = (boxNumber) => {
-        if (window.innerWidth >= 768) {
+        if (window.innerWidth >= 1024) {
             setHoveredBox(boxNumber);
         }
     };
@@ -167,9 +179,9 @@ function InteractiveGridLayout({ onOpenModal }) {
     
     // Di komputer Anda, ganti URL ini dengan variabel impor Anda (misal: bgWhite).
     const boxesData = [
-        { id: 1, imageUrl: bgWhite, title: "Brief & Philosphy", description: "How our program's means to us & others" },
-        { id: 2, imageUrl: bgBlack, title: "Dive Into Our Program", description: "See what's we bring thourgh our program's." },
-        { id: 3, imageUrl: bgWhite, title: "FAQ", description: "Frequently Asked Questions about our program's." }
+        { id: 1, imageUrl: bg1, title: "Brief & Philosphy", description: "How our program's means to us & others" },
+        { id: 2, imageUrl: bg2, title: "Dive Into Our Program", description: "See what's we bring thourgh our program's." },
+        { id: 3, imageUrl: bg3, title: "FAQ", description: "Frequently Asked Questions about our program's." }
     ];
 
     const isHintVisible = hoveredBox === 0 && activeBox === 0;
