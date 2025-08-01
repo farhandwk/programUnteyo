@@ -7,11 +7,9 @@ import Footer from "./Footer"
 import "./App.css"
 
 // Di lingkungan lokal Anda, Anda bisa menggunakan impor ini:
-import bg1 from "./assets/bg1.jpg"
-import bg2 from "./assets/bg2.jpg"
-import bg3 from "./assets/bg3.jpg"
-import bgWhite from "./assets/DummbyBGwhite.jpg"
-import bgBlack from "./assets/DummyBGblack.png"
+import bg1 from "./assets/bg1.jpeg"
+import bg2 from "./assets/bg2.png"
+import bg3 from "./assets/bg3.jpeg"
 
 const divePrograms = [
     {id: 1, title: "Creative Media", text: "Unteyo Journey consistently produces and shares high-quality content designed for student empowerment. This includes everything from in-depth articles that foster critical thinking to practical guides filled with actionable resources for self-development. In addition to the content we provide, this pillar also functions as a dedicated creative outlet , offering an ecosystem where students can showcase their own projects and transform passive learning into active creation."},
@@ -117,7 +115,7 @@ const Modal = ({ activeModalId, onClose }) => {
 };
 
 
-const GridBox = ({ children, className, onClick, onMouseEnter, onMouseLeave, imageUrl, isExpanded }) => (
+const GridBox = ({ children, className, onClick, onMouseEnter, onMouseLeave, imageUrl, isExpanded, backgroundPosition }) => (
     <div 
         className={`flex items-center justify-center rounded-2xl transition-all duration-700 ease-in-out cursor-pointer overflow-hidden relative ${className}`}
         onClick={onClick}
@@ -125,7 +123,7 @@ const GridBox = ({ children, className, onClick, onMouseEnter, onMouseLeave, ima
         onMouseLeave={onMouseLeave}
     >
         <div
-            className={`absolute inset-0 bg-cover bg-center transition-all duration-700 ease-in-out ${isExpanded ? 'scale-110 blur-sm' : 'scale-100 blur-0'}`}
+            className={`absolute inset-0 bg-cover  transition-all duration-700 ease-in-out ${isExpanded ? 'scale-110 blur-sm ' : 'scale-100 blur-0'} ${backgroundPosition}`}
             style={{ backgroundImage: `url(${imageUrl})` }}
         />
         <div className="absolute inset-0 bg-black/40"></div>
@@ -203,9 +201,10 @@ function InteractiveGridLayout({ onOpenModal }) {
                 </AnimatePresence>
             </div>
 
-            <div className="w-full flex flex-col md:flex-row gap-4">
+            <div className="w-full flex flex-col md:flex-row gap-6">
                 {boxesData.map(box => {
                     const isExpanded = hoveredBox === box.id || activeBox === box.id;
+                    const backgroundPosition = box.id == 2 ? 'bg-start' : 'bg-center'
                     return (
                         <GridBox 
                             key={box.id}
@@ -215,6 +214,7 @@ function InteractiveGridLayout({ onOpenModal }) {
                             className={getBoxClasses(box.id)}
                             imageUrl={box.imageUrl}
                             isExpanded={isExpanded}
+                            backgroundPosition={backgroundPosition}
                         >
                             <div className={`absolute inset-0 transition-opacity duration-500 ${isExpanded ? 'opacity-0' : 'opacity-100'}`}>
                                 <DefaultContent title={box.title} />
