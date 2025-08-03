@@ -85,14 +85,14 @@ const Modal = ({ activeModalId, onClose }) => {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
-                className="fixed inset-0 bg-black/70 flex items-center justify-center z-50 p-6 pt-36"
+                className="fixed inset-0 bg-black/30 flex items-center justify-center z-50 p-6 pt-36"
                 onClick={onClose}
             >
                 <motion.div
                     initial={{ scale: 0.9, y: 20 }}
                     animate={{ scale: 1, y: 0 }}
                     exit={{ scale: 0.9, y: 20 }}
-                    className="bg-gray-900 rounded-2xl w-full max-w-2xl max-h-[90vh] overflow-y-auto p-8 relative flex flex-col items-center md:max-w-4xl"
+                    className="bg-black/90 rounded-2xl w-full max-w-2xl max-h-[90vh] overflow-y-auto p-8 relative flex flex-col items-center md:max-w-4xl"
                     onClick={(e) => e.stopPropagation()}
                 >
                     <button onClick={onClose} className="absolute top-4 right-4 text-gray-500 hover:text-white transition-colors text-2xl font-bold">&times;</button>
